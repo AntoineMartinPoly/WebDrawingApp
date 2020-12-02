@@ -1,0 +1,16 @@
+<div id="container">
+  <div class="toolbar">
+    <app-toolbar></app-toolbar>
+  </div>
+  <div class="drawing pencil" id="drawingView">
+    <app-drawing-surface></app-drawing-surface>
+  </div>
+  <div class="drag"  cdkDragBoundary="#container" cdkDrag>
+    <div class="align">
+        <mat-chip class="handle" cdkDragHandle>
+            <img src="assets/move.png" height="24px" width="24px">
+        </mat-chip>
+    </div>
+      <app-color-picker [isImplementedFromToolBar]=true></app-color-picker>
+  </div>
+</div>

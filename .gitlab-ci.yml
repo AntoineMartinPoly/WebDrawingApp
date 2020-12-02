@@ -1,0 +1,70 @@
+stages:
+  - setup
+  - test
+
+image: node:latest
+
+.base:
+  stage: test
+  tags:
+    - docker
+
+.lint_base:
+  extends: .base
+  script:
+    - npm install
+    - export PATH=node_modules/.bin:$PATH
+    - npm run ci-lint
+
+.test_base:
+  extends: .base
+  script:
+    - npm install
+    - npm run coverage -- --browsers=Firefox
+  coverage: /All files\s+\|\s+(\d{1,3}(?:\.\d{1,3})?)/  # https://rubular.com/r/LLi2NoPxhPcp71
+  artifacts:
+    paths:
+      - coverage
+
+lint_client:
+  extends: .lint_base
+  before_script:
+    - cd client
+  cache:
+    key: $CI_PROJECT_PATH_SLUG-client
+    paths:
+      - client/node_modules
+
+lint_server:
+  extends: .lint_base
+  before_script:
+    - cd server
+  cache:
+    key: $CI_PROJECT_PATH_SLUG-server
+    paths:
+      - server/node_modules
+
+test_client:
+  extends: .test_base
+  image: tlaferriere71/projet-2
+  variables:
+    DISPLAY: ":1.0"
+    SIDE: client
+  before_script:
+    - Xvfb :1 -screen 0 1024x768x16 &> xvfb.log  &
+    - cd client
+  cache:
+    key: $CI_PROJECT_PATH_SLUG-client
+    paths:
+      - client/node_modules
+
+.test_server:
+  extends: .test_base
+  variables:
+    SIDE: server
+  before_script:
+    - cd server
+  cache:
+    key: $CI_PROJECT_PATH_SLUG-server
+    paths:
+      - server/node_modules

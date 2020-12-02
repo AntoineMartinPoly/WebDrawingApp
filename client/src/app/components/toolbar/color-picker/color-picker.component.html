@@ -1,0 +1,76 @@
+<div class="container">
+      <canvas #secondary
+      id="secondary"
+      height="45px"
+      width="45px"
+      class="canvas"
+      (click)='showColorOptions("primaryCanvas")'
+      [hidden]="!isImplementedFromToolBar">
+    </canvas>
+    <canvas #primary
+      id="primary"
+      height="45px"
+      width="45px"
+      class="canvas"
+      (click)='showColorOptions("primaryCanvas")'
+      [hidden]="!isImplementedFromToolBar">
+    </canvas>
+    <mat-chip-list>
+        <mat-chip id="colorSwitch"
+        (click)="switchColor()"
+        [hidden]="!isImplementedFromToolBar">
+          <img src="assets/change.png">
+        </mat-chip>
+    </mat-chip-list>
+</div>
+
+
+
+
+
+
+<div id="colorBar">
+
+  <div id="colorOptions">
+
+    <app-color-slider
+      #colorSlider
+      id="colorSlider"
+      (focusout)='updateUsedColor()'
+      (colorRGBChange)="updateRGB($event)" >
+    </app-color-slider>
+
+    <app-bw-selector
+      #bwSelector
+      id="bwSelector"
+      (focusout)='updateUsedColor()'
+      (hueChange)="updateBW($event)" >
+    </app-bw-selector>
+
+    <app-opacity-slider
+      #opacitySlider
+      id="opacitySlider"
+      (focusout)='updateUsedColor()'
+      (opacityChange)="updateOpacity($event)">
+    </app-opacity-slider>
+
+    <mat-form-field id="hex">
+        <input #hexInput matInput 
+        type="text" 
+        [(ngModel)]="colorService.hexColor" 
+        (focus)='changeShortcutAccess(false)'
+        (focusout)='changeShortcutAccess(true)'
+        (keyup)='updateColorFromHex($event)'
+        placeholder="hex">
+    </mat-form-field>
+
+    <div 
+    id="usedColors">
+      <div *ngFor="let usedColor of colorService.colorUsed"
+           class="oldColor"
+           [style.background]="colorService.converter.ColorRGBAToHexString(usedColor)"
+           (click)="usedColorUpdate(usedColor)">
+      </div>
+    </div>
+  </div>
+</div>

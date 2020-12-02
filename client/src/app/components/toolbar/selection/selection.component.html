@@ -1,0 +1,32 @@
+<div id="buttons">
+    <button class="button" id="copy" [disabled]="!isADrawingSelected" (click)="this.selectionToolService.handleCopy()" mat-stroked-button>
+        <span title="Copy">
+            <mat-icon>content_copy</mat-icon>
+        </span>
+    </button>
+    <button class="button" id="cut" [disabled]="!isADrawingSelected" (click)="this.selectionToolService.handleCut()" mat-stroked-button>
+        <span title="Cut">
+                <mat-icon>content_cut</mat-icon>
+        </span>
+    </button>
+    <button class="button" id="paste" [disabled]="!isADrawingSelected" (click)="this.selectionToolService.handlePaste()" mat-stroked-button>
+        <span title="Paste">
+                <mat-icon>content_paste</mat-icon>
+        </span>
+    </button>
+    <button class="button" id="duplicate" [disabled]="!isADrawingSelected" (click)="this.selectionToolService.handleDuplicate()" mat-stroked-button>
+        <span title="Duplicate">
+            <mat-icon>file_copy</mat-icon>
+        </span>
+    </button>
+    <button class="button" id="delete" [disabled]="!isADrawingSelected" (click)="this.selectionToolService.handleDelete()" mat-stroked-button>
+        <span title="Delete">
+            <mat-icon>delete</mat-icon>
+        </span>
+    </button>
+    <button class="button" id="selectAll" (click)="this.selectionToolService.handleSelectAll()" mat-stroked-button>
+        <span title="Select All">
+            <mat-icon>select_all</mat-icon>
+        </span>
+    </button>
+</div>

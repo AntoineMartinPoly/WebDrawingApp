@@ -1,0 +1,3 @@
+[0924/205951.491:ERROR:crash_report_database_win.cc(580)] CreateDirectory C:\Users\Antoine\AppData\Local\Temp\karma-12107488\Crashpad: The system cannot find the path specified. (0x3)
+[1021/200815.152:ERROR:exception_handler_server.cc(527)] ConnectNamedPipe: The pipe is being closed. (0xE8)
+[1111/171628.772:ERROR:crash_report_database_win.cc(580)] CreateDirectory C:\Users\Antoine\AppData\Local\Temp\karma-10252210\Crashpad: The system cannot find the path specified. (0x3)

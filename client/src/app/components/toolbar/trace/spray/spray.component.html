@@ -1,0 +1,32 @@
+
+<form [formGroup]="form">
+  <label>Emission frequency</label>
+   <mat-slider
+    thumbLabel
+    formControlName="interval"
+    [displayWith]="formatLabel"
+    type="range"
+    max="90"
+    min="12"
+    step="1"
+    tickInterval="1"
+    (change)="setInterval()"
+    (focus)='changeShortcutAccess(false)'
+    (focusout)='changeShortcutAccess(true)'
+    style="width: 80%"
+    >
+</mat-slider>
+  <mat-form-field style="margin-bottom: -1em;">
+      <input matInput type="text" formControlName="radius"
+          maxlength="3"
+          placeholder="Radius's of spray"
+          onPaste="return false"
+          (focus)='changeShortcutAccess(false)'
+          (focusout)='changeShortcutAccess(true)'
+          (keypress)="this.keypressValidator.rangeValidator($event, form.get('radius').value, 100)"
+          (keyup)="sprayService.radius = form.get('radius').value ? form.get('radius').value : '5'">
+      <mat-error *ngIf='form.get("radius").hasError("required")'>
+          Input cannot be empty
+      </mat-error>
+  </mat-form-field>
+</form>

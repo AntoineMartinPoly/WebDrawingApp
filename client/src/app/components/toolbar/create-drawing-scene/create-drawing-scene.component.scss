@@ -1,0 +1,30 @@
+#paletteID{
+    display: grid;
+    grid-template: "auto auto auto auto auto"
+                   "auto auto auto auto auto";
+    margin-left: 10%;
+}
+.oldColor{
+    border:solid;
+    height: 40px;
+    width: 40px;
+    margin : 2px 0 3px 0;
+    overflow: hidden;
+}
+
+#container {
+    width: 275px;
+    text-align: center;
+}
+
+mat-form-field {
+    margin-bottom: 15px;
+}
+
+mat-radio-button {
+    margin-left: 5px;
+}
+
+button {
+    margin: 30px 10px 0 10px;
+}

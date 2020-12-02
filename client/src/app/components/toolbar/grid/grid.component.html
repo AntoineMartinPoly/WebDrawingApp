@@ -1,0 +1,58 @@
+<div class="left">
+  <mat-slide-toggle
+  (change)="updateColorTab()"
+  [(ngModel)]= isColor>
+    Color Picker (Q)
+  </mat-slide-toggle>
+</div>
+<div class="left">
+  <mat-slide-toggle 
+  (change)="toggleGrid()"
+  [(ngModel)]= isShown>
+    Grid (G)
+  </mat-slide-toggle>
+</div>
+<div class="left">
+  <mat-slide-toggle 
+  (change)="toggleMagnetism($event)"
+  [(ngModel)]= isMagnetism>
+    Magnetism (M)
+  </mat-slide-toggle>
+</div>
+<div class="line"></div>
+<form [formGroup]="form" *ngIf=isShown>
+  <h6><u>Grid's settings</u></h6>
+  <div>
+    <mat-form-field style="margin-bottom: -1em;">
+      <input matInput type="text" formControlName="size"
+      placeholder="Grid Size (cannot be over 500)"
+      onPaste="return false"
+      (focus)='changeShortcutAccess(false)'
+      (focusout)='changeShortcutAccess(true)'
+      (keypress)="this.keypressValidator.rangeValidator($event, form.get('size').value, 500)"
+      (keyup)="updateSize($event);">
+      <mat-error *ngIf="form.get('size').hasError('pattern')">
+        Input has to be a number
+      </mat-error>
+    </mat-form-field>
+
+    <div class="label">
+      <label>opacity</label>
+      <mat-slider
+        thumbLabel
+        [displayWith]="formatLabel"
+        tickInterval="1"
+        type="range"
+        step="0.1"
+        min="0.1"
+        max="1"
+        value="0.3"
+        formControlName="opacity"
+        (focus)='changeShortcutAccess(false)'
+        (focusout)='changeShortcutAccess(true)'
+        (input)="updateOpacity($event)"
+        style="width: 80%"
+      ></mat-slider>
+    </div>
+  </div>
+</form>

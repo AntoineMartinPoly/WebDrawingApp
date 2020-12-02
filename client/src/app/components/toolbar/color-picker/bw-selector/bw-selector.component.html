@@ -1,0 +1,12 @@
+<canvas #canvas
+  tabindex="0"
+  id="canvas"
+  height="160"
+  width="160"
+  (focus)='changeShortcutAccess(false)'
+  (focusout)='changeShortcutAccess(true)'
+  (mousedown)="onMouseDown($event)"
+  (mouseup)="onMouseUp(); unFocus()"
+  (mousemove)="onMouseMove($event)"
+  (mouseleave)="onMouseLeave()">
+</canvas>

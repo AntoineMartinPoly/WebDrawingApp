@@ -1,0 +1,45 @@
+<div class="container">
+        <mat-button-toggle-group 
+        [(value)]="shapeSelector"
+        #group="matButtonToggleGroup">
+      <mat-button-toggle
+      (change)="storage.set('shape_selected', shapeSelector)"
+      matTooltip="rectangle (1)"
+      matTooltipPosition="above"
+      value="shape_rectangle">
+        <img src="assets/tools/rectangle.png" height="19" width="19">
+      </mat-button-toggle>
+      <mat-button-toggle value="shape_ellipse"
+      matTooltip="ellipse (2)"
+  matTooltipPosition="above"
+      (change)="storage.set('shape_selected', shapeSelector)">
+        <img src="assets/tools/ellipse.png" height="19" width="19">
+      </mat-button-toggle>
+      <mat-button-toggle value="shape_polygon"
+      matTooltip="polygon (3)"
+  matTooltipPosition="above"
+      (change)="storage.set('shape_selected', shapeSelector)">
+        <img src="assets/tools/polygon.png" height="19" width="19">
+      </mat-button-toggle>
+      <mat-button-toggle value="shape_line"
+      matTooltip="line (l)"
+  matTooltipPosition="above"
+      (change)="storage.set('shape_selected', shapeSelector)">
+        <img src="assets/tools/line.png" height="19" width="19">
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+    <div>
+        <div *ngIf="shapeSelector === shapeTable[0]">
+            <app-rectangle></app-rectangle>
+        </div>
+        <div *ngIf="shapeSelector === shapeTable[1]">
+            <app-ellipse></app-ellipse>
+        </div>
+        <div *ngIf="shapeSelector === shapeTable[2]">
+            <app-polygon></app-polygon>
+        </div>
+        <div *ngIf="shapeSelector === shapeTable[3]">
+            <app-line></app-line>
+        </div>
+    </div>
+</div>

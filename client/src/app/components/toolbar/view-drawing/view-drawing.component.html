@@ -1,0 +1,72 @@
+<div id="container" *ngIf="!isLoading">
+    <mat-form-field class="chipList">
+      <mat-chip-list #chipList aria-label="Fruit selection">
+        <mat-chip *ngFor="let tag of selectedTags" (removed)="removeTag(tag)">
+          {{ tag }}
+          <mat-icon matChipRemove>cancel</mat-icon>
+        </mat-chip>
+        <input
+          placeholder="Tags"
+          [matChipInputFor]="chipList"
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+          (matChipInputTokenEnd)="addTag($event.value); $event.input.value=''"
+        />
+      </mat-chip-list>
+    </mat-form-field>
+    <div *ngIf="noDrawingsMatchTags"> No drawings match Tags</div>
+    <div class='loading'><mat-progress-spinner *ngIf='!isReady' mode="indeterminate"></mat-progress-spinner></div>
+    <div
+      fxLayout="row wrap"
+      fxLayoutGap="32px"
+      fxLayoutAlign="flex-start"
+      id="cardContainer"
+      *ngIf='isReady'>
+      <div *ngFor="let drawing of drawingsTable; let i = index">
+        <div>
+          <mat-card
+          [class.focus]="selectedDrawing === i"
+          (click)="selectedDrawing = i;"
+          class="card">
+            <mat-card-header>
+              <mat-card-title>{{ drawing.name }}</mat-card-title>
+            </mat-card-header>
+            <img *ngIf="drawing.link" [src]="drawing.link" height='100' width='100'/>
+            <mat-card-footer>
+              <mat-chip-list>
+                <div *ngIf="drawing.tags.length !== 0" class='center'>
+                  <mat-chip mat-raised-button
+                          matTooltip={{drawing.tagsOnString}}>
+                          Tags
+                  </mat-chip>
+                </div>
+              </mat-chip-list>
+            </mat-card-footer>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+    <div class="directionButton">
+      <button mat-icon-button [disabled]='imgIndex === 0' (click)='upIndex(false);loadDrawing()'>
+        <mat-icon>arrow_back_ios</mat-icon>
+      </button>
+      <button mat-icon-button [disabled]='!isNext' (click)='upIndex(true);loadDrawing()'>
+        <mat-icon>arrow_forward_ios</mat-icon>
+      </button>
+    </div>
+    <div>
+      <button mat-button [disabled]="selectedDrawing === -1" (click)="openSelectedImage();">
+        Open Drawing
+      </button>
+      <button mat-button (click)="local.click()">
+        Open local drawing
+      </button>
+      <input hidden (change)="openLocalProprietaryImage($event)" #local type="file" id="file" accept=".pdd">
+      <button mat-button (click)="dialogRef.close()">
+        Close
+      </button>
+    </div>
+</div>
+<div *ngIf="isLoading">
+    <div ><mat-progress-spinner mode="indeterminate"></mat-progress-spinner></div>
+</div>
+

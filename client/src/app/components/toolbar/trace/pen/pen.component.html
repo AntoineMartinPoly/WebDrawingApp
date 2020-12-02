@@ -1,0 +1,30 @@
+<div id="container">
+  <form [formGroup]="form">
+      <mat-form-field>
+          <input matInput name="thicknessMax" type="text" formControlName="thicknessMax"
+              maxlength="3"
+              onPaste="return false"
+              placeholder="Pen's Maximum Thickness"
+              (focus)='changeShortcutAccess(false)'
+              (focusout)='changeShortcutAccess(true)'
+              (keypress)="this.keypressValidator.rangeValidator($event, form.get('thicknessMax').value, 100)"
+              (keyup)='storage.set("trace_pen_option_thickness_max", (form.get("thicknessMax").value?form.get("thicknessMax").value : 1))'>
+          <mat-error *ngIf='form.get("thicknessMax").hasError("required")'>
+              Input cannot be empty
+          </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput name="thicknessMin" type="text" formControlName="thicknessMin"
+            maxlength="3"
+            onPaste="return false"
+            placeholder="Pen's Minimum Thickness"
+            (focus)='changeShortcutAccess(false)'
+            (focusout)='changeShortcutAccess(true)'
+            (keypress)="this.keypressValidator.rangeValidator($event, form.get('thicknessMin').value, 100)"
+            (keyup)='storage.set("trace_pen_option_thickness_min", (form.get("thicknessMin").value > 0 ? form.get("thicknessMin").value : 1))'>
+        <mat-error *ngIf='form.get("thicknessMin").hasError("required")'>
+            Input cannot be empty
+        </mat-error>
+    </mat-form-field>
+  </form>
+</div>

@@ -1,0 +1,11 @@
+export const INDEX_BEGIN = 0;
+export const NO_DRAWING_SELECTED = -1;
+export const EMPTY_STRING = '';
+export const A_COMMA = ', ';
+export const NO_NEXT = false;
+export const UP_INDEX = true;
+export const DOWN_INDEX = false;
+export const LOAD = 'load';
+export const SVG_FILE_BEGIN = '<svg';
+export const SNACKBAR_ALERT_ACTION = 'Dismiss';
+export const SNACKBAR_ALERT_DURATION = 2000;

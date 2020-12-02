@@ -1,0 +1,55 @@
+<div id="container">
+    <mat-button-toggle-group 
+    [(value)]="traceSelector"
+    #group="matButtonToggleGroup">
+  <mat-button-toggle
+  (change)="storage.set('trace_selected', traceSelector)"
+  matTooltip="pencil (c)"
+  matTooltipPosition="above"
+  value="trace_pencil">
+    <img src="assets/tools/pencil.png" height="19" width="19">
+  </mat-button-toggle>
+  <mat-button-toggle value="trace_brush"
+  matTooltip="brush (w)"
+  matTooltipPosition="above"
+  (change)="storage.set('trace_selected', traceSelector)">
+    <img src="assets/tools/brush.png" height="19" width="19">
+  </mat-button-toggle>
+  <mat-button-toggle value="trace_pen"
+  matTooltip="pen (y)"
+  matTooltipPosition="above"
+  (change)="storage.set('trace_selected', traceSelector)">
+    <img src="assets/tools/pen.png" height="19" width="19">
+  </mat-button-toggle>
+  <mat-button-toggle value="trace_feather"
+  matTooltip="feather (p)"
+  matTooltipPosition="above"
+  (change)="storage.set('trace_selected', traceSelector)">
+    <img src="assets/tools/feather.png" height="19" width="19">
+  </mat-button-toggle>
+  <mat-button-toggle value="trace_spray"
+  (change)="storage.set('trace_selected', traceSelector)"
+  matTooltip="spray (a)"
+  matTooltipPosition="above">
+    <img src="assets/tools/spray.png" height="19" width="19">
+  </mat-button-toggle>
+</mat-button-toggle-group>
+
+<div class="row">
+    <div class="col-12" *ngIf="traceSelector === traceTable[0]">
+        <app-pencil></app-pencil>
+    </div>
+    <div class="col-12" *ngIf="traceSelector === traceTable[1]">
+        <app-brush></app-brush>
+    </div>
+    <div class="col-12" *ngIf="traceSelector === traceTable[2]">
+        <app-pen></app-pen>
+    </div>
+    <div class="col-12" *ngIf="traceSelector === traceTable[3]">
+       <app-feather></app-feather>
+    </div>
+    <div class="col-12" *ngIf="traceSelector === traceTable[4]">
+        <app-spray></app-spray>
+    </div>
+</div>
+</div>

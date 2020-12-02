@@ -1,0 +1,105 @@
+<div id="container">
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div>
+            <mat-form-field>
+                  <input matInput name="createHeight" type="text" formControlName="height"
+                        placeholder="Height" 
+                        (keypress)="this.keypressService.rangeValidator($event, form.get('height').value, 10000)">
+                  <mat-error *ngIf='form.get("height").hasError("required")'>
+                        Input cannot be empty
+                  </mat-error>
+            </mat-form-field>
+      </div>
+      <div>
+            <mat-form-field>
+                  <input matInput name="createWidth" type="text" formControlName="width"
+                        placeholder="Width" 
+                        (keypress)="this.keypressService.rangeValidator($event, form.get('width').value, 10000)">
+                  <mat-error *ngIf='form.get("width").hasError("required")'>
+                        Input cannot be empty
+                  </mat-error>
+            </mat-form-field>
+      </div>
+      <div>
+            <mat-radio-group>
+                  <mat-radio-button value="Palette" (click)="setRadio('palette')" [checked]='true'>Palette</mat-radio-button>
+                  <mat-radio-button value="rgb" (click)="setRadio('rgb')">RGB</mat-radio-button>
+            </mat-radio-group>
+      </div>
+
+      <div *ngIf="isSelected('palette')">
+        <app-color-picker #colorPicker [isImplementedFromToolBar]="false"></app-color-picker>
+      </div>
+
+      <div *ngIf="isSelected('rgb')">
+            <div>
+                  <mat-form-field>
+                        <input matInput name="R" type="text" formControlName="red"
+                              placeholder="Red" 
+                              (keypress)="this.keypressService.isNumber($event)">
+                        <mat-error *ngIf='form.get("red").hasError("required")'>
+                              Input cannot be empty
+                        </mat-error>
+                        <mat-error *ngIf='form.get("red").hasError("max")'>
+                              Value should be between 0 and 255
+                        </mat-error>
+                  </mat-form-field>
+            </div>
+            <div>
+                  <mat-form-field>
+                        <input matInput name="G" type="text" formControlName="green"
+                              placeholder="Green" 
+                              (keypress)="this.keypressService.isNumber($event)">
+                        <mat-error *ngIf='form.get("green").hasError("required")'>
+                              Input cannot be empty
+                        </mat-error>
+                        <mat-error *ngIf='form.get("green").hasError("max")'>
+                              Value should be between 0 and 255
+                        </mat-error>
+                  </mat-form-field>
+            </div>
+            <div>
+                  <mat-form-field>
+                        <input matInput name="B" type="text" formControlName="blue"
+                              placeholder="Blue" 
+                              (keypress)="this.keypressService.isNumber($event)">
+                        <mat-error *ngIf='form.get("blue").hasError("required")'>
+                              Input cannot be empty
+                        </mat-error>
+                        <mat-error *ngIf='form.get("blue").hasError("max")'>
+                              Value should be between 0 and 255
+                        </mat-error>
+                  </mat-form-field>
+            </div>
+            <div>
+                  <mat-form-field>
+                        <input matInput name="Opacity" type="text" formControlName="opacity"
+                              placeholder="Opacity" >
+                        <mat-error *ngIf='form.get("opacity").hasError("required")'>
+                              Input cannot be empty
+                        </mat-error>
+                        <mat-error *ngIf='form.get("opacity").hasError("max")'>
+                              Opacity has to be between 0 and 1
+                        </mat-error>
+                        <mat-error *ngIf='form.get("opacity").hasError("pattern") && !form.get("opacity").hasError("max")'>
+                              Input should only contain numbers, except if decimal. Use the dot '.' and not ',' for decimals
+                        </mat-error>
+                  </mat-form-field>
+            </div>
+      </div>
+      <button mat-raised-button 
+      color="primary" 
+      type="submit" 
+      [disabled]="form.invalid" 
+      (click)="dialogRef.close()">
+            Create
+      </button>
+      <button mat-raised-button 
+      color="warn" 
+      type="button" 
+      (click)="dialogRef.close()">
+            Cancel
+      </button>
+</form>
+</div>
+

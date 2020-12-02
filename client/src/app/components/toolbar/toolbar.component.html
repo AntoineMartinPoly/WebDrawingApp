@@ -1,0 +1,99 @@
+<mat-sidenav-container>
+    <mat-sidenav #sidenav opened>
+        <mat-chip-list class="button">
+            <mat-chip *ngFor='let tool of toolButtonList; let i = index'
+            (click)='selectTool(i); inSelection=false; sidenav.close();'
+            [matTooltip]="toolTable[i]"
+            matTooltipPosition="right">
+                  <fa-icon [icon]="tool" [fixedWidth]="true"></fa-icon>
+            </mat-chip>
+        </mat-chip-list>
+        <div class="bottom">
+            <mat-chip-list class="button-bottom">
+                <mat-chip *ngFor='let option of ActionButtonList; let i = index'
+                (click)="openComponentDialog(i)"
+                [matTooltip]="optionTable[i]"
+                matTooltipPosition="right">
+                  <fa-icon [icon]="option" [fixedWidth]="true"></fa-icon>
+                </mat-chip>
+        </mat-chip-list>
+        </div>
+    </mat-sidenav>
+    <mat-sidenav-content *ngIf='!inSelection' style="min-width: 250px;">
+        <div>
+            <mat-chip-list class="name">
+                <mat-chip (click)='sidenav.open(); inSelection=true'>
+                    <mat-icon>arrow_back_ios</mat-icon>
+                    <span *ngIf='toolSelector == 0'>
+                        TRACE
+                    </span>
+                    <span *ngIf='toolSelector == 1'>
+                        SHAPE
+                    </span>
+                    <span *ngIf='toolSelector == 2'>
+                        COLORIZER
+                    </span>
+                    <span *ngIf='toolSelector == 3'>
+                        WORDS
+                    </span>
+                    <span *ngIf='toolSelector == 4'>
+                        PIPETTE
+                    </span>
+                    <span *ngIf='toolSelector == 5'>
+                        STAMP
+                    </span>
+                    <span *ngIf='toolSelector == 6'>
+                        SELECT
+                    </span>
+                    <span *ngIf='toolSelector == 7'>
+                        ERASER
+                    </span>
+                    <span *ngIf='toolSelector == 8'>
+                        BUCKET
+                    </span>
+                  <span *ngIf='toolSelector == 9'>
+                        SPRAY
+                    </span>
+                </mat-chip>
+            </mat-chip-list>
+        <div class="line"></div>
+        <h6><u>Tool's settings</u></h6>
+        <div class="tools" *ngIf='toolSelector == 0'>
+            <app-trace></app-trace>
+        </div>
+        <div class="tools" *ngIf='toolSelector == 1'>
+            <app-shape></app-shape>
+        </div>
+        <div class="tools" *ngIf='toolSelector == 2'>
+            <app-colorizer></app-colorizer>
+        </div>
+        <div class="tools" *ngIf='toolSelector == 3'>
+          <app-text></app-text>
+        </div>
+        <div class="tools" *ngIf='toolSelector == 4'>
+            <app-pipette></app-pipette>
+        </div>
+        <div class="tools" *ngIf='toolSelector == 5'>
+            <app-stamp></app-stamp>
+        </div>
+        <div class="tools" *ngIf='toolSelector == 6'>
+            <app-selection></app-selection>
+        </div>
+        <div class="tools" *ngIf='toolSelector == 7'>
+            <app-eraser></app-eraser>
+        </div>
+        <div class="tools" *ngIf='toolSelector == 8'>
+          <app-bucket></app-bucket>
+        </div>
+    </div>
+    <div class="line"></div>
+    <div>
+      <app-action></app-action>
+    </div>
+    <div class="line"></div>
+    <div>
+      <app-grid-surface></app-grid-surface>
+    </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>
+

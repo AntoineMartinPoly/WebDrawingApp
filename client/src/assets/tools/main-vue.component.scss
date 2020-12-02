@@ -1,0 +1,108 @@
+#container {
+    width: 100%;
+    height: 100vh;
+    min-height: 600px;
+    margin: 0;
+    display: flex;
+    background: #edededff;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.toolbar {
+    min-width: 50px;
+    background: white;
+    margin-right: 10px;
+}
+
+.drawing {
+    width: 100vw;
+    max-width: 100%;
+    border: 3px dotted black;
+    overflow: scroll;
+    margin-right: 10px;
+}
+
+.drag {
+    z-index: 9000;
+    padding-top: 10px;
+    text-align: center;
+    width: 300px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #fcfcfcff;
+    border: 3px solid #a0969673;
+    border-radius: 10px;
+}
+
+.pencil {
+    cursor: url('src/cursor/pencil.png') 0 32, auto;
+}
+
+.brush {
+    cursor: url('src/cursor/brush.png') 0 32, auto;
+}
+
+.bucket {
+    cursor: url('src/cursor/fill.png') 0 32, auto;
+}
+
+.pen {
+    cursor: url('src/cursor/pen.png') 0 32, auto;
+}
+
+.stamp {
+    cursor: url('src/cursor/stamp.png') 16 32, auto;
+}
+
+.none {
+    cursor: none;
+}
+
+.shape {
+    cursor: crosshair;
+}
+
+.pipette {
+    cursor: url('src/cursor/pipette.png') 0 32, auto;
+}
+
+.feather {
+    cursor: url('src/cursor/feather.png') 0 32, auto;
+}
+
+.spray {
+    cursor: url('src/cursor/spray.png') 0 5, auto;
+}
+
+.colorizer {
+    cursor: url('src/cursor/colorizer.png') 0 32, auto;
+}
+
+.rectangle {
+    cursor: url('src/cursor/rectangle.png') 0 32, auto;
+}
+
+.ellipse {
+    cursor: url('src/cursor/ellipse.png') 0 32, auto;
+}
+
+.polygon {
+    cursor: url('src/cursor/polygon.png') 0 32, auto;
+}
+
+.line {
+    cursor: url('src/cursor/line.png') 0 32, auto;
+}
+
+.handle {
+    width: 34;
+    height: 34;
+    border-radius: 10px;
+}
+
+.align {
+    text-align: right;
+    padding: 5px 10px 0 10px;
+}

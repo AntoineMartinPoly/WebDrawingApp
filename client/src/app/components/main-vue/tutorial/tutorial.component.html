@@ -1,0 +1,71 @@
+<div id="container">
+  <h2>Polydessin</h2>
+  <div class="page" *ngIf="page === 0">
+    <h4><u>Overview</u></h4>
+    <p>Welcome! The application is divided in <b>two</b> main section. The <b>toolbar</b> and the <b>drawing view</b>.</p>
+    <img src="assets/tutorial/overview.png" height="350px" width="550px">
+  </div>
+
+  <div class="page" *ngIf="page === 1">
+      <h4><u>Toolbar</u></h4>
+      <p>The toolbar contains multiple buttons that can be put into 3 categories:</p>
+      <mat-list>
+          <mat-list-item >- <b>Tool</b>
+            <img src="assets/tutorial/trace_icon.png" height="45px" width="55px">
+            <img src="assets/tutorial/shape_icon.png" height="45px" width="55px">
+            <img src="assets/tutorial/text_icon.png" height="45px" width="55px">
+            <img src="assets/tutorial/stamp_icon.png" height="45px" width="55px">
+          </mat-list-item>
+          <mat-list-item >- <b>Modifier</b>
+            <img src="assets/tutorial/colorizer_icon.png" height="45px" width="55px">
+            <img src="assets/tutorial/pipette_icon.png" height="45px" width="55px">
+            <img src="assets/tutorial/select_icon.png" height="45px" width="55px">
+            <img src="assets/tutorial/eraser_icon.png" height="45px" width="55px">
+          </mat-list-item>
+          <mat-list-item >- <b>Option</b>
+            <img src="assets/tutorial/create_icon.png" height="45px" width="55px">
+            <img src="assets/tutorial/save_icon.png" height="45px" width="55px">
+            <img src="assets/tutorial/gallery_icon.png" height="45px" width="55px">
+            <img src="assets/tutorial/export_icon.png" height="45px" width="55px">
+            <img src="assets/tutorial/tutorial_icon.png" height="45px" width="55px">
+          </mat-list-item>
+      </mat-list>
+      <p><b>Tools</b>purpose is to <b>create elements</b>, such as 
+        <b>traces, shapes, texts and stamps.</b>
+      </p>
+      <p>
+        <b>Modifiers</b>purpose is to <b>modify element</b>. Those tools are the 
+        <b>colorizer</b>, the <b>pipette</b>, the <b>selection</b> and the <b>eraser.</b>
+      </p>
+      <p>
+        <b>Options</b> purpose is to <b>create, save, load and export drawings</b>and to 
+        <b>access tutorial.</b> 
+      </p>
+      <p>To access one of the feature, simply <b>click</b> on it's button</p>
+      <p>Don't worry about remembering all functionnalities! A hover will give the
+        name of the button <img src="assets/tutorial/toolbar_hover_example.png" height="45px" width="95px">
+      </p>
+  </div>
+  <div class="page" *ngIf="page === 2">
+    <h4><u>Drawing view</u></h4>
+    <p>The drawing view is the core of the application. It is where you're allowed to
+      draw and edit element as much as you want. Note that if you move your cursor 
+      outside of the drawing view while creating an element, that element will be 
+      deleted.
+    </p>
+    <img src="assets/tutorial/drawing_out.gif" height="200px" width="400px">
+  </div>
+  <div class="button">
+     <mat-chip class="addMargin2" [disabled]='page === 0' (click)=changePage(false)>
+       <mat-icon class="arrow">arrow_back_ios</mat-icon>
+    </mat-chip>
+     <mat-chip [disabled]='page >= 2' (click)=changePage()>
+       <mat-icon class="arrow">arrow_forward_ios</mat-icon>
+    </mat-chip>
+  </div>
+    <div class="button">
+      <mat-checkbox [(ngModel)]="deactivateTutorial">Do not show again</mat-checkbox>
+      <span class="addMargin"></span>
+      <button mat-raised-button color="warn" type="button" (click)="dialogRef.close()"> Close </button>
+    </div>
+  </div>

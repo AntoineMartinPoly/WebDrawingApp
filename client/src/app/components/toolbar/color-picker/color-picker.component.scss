@@ -1,0 +1,115 @@
+#container {
+    width: 300px;
+}
+
+#secondary{
+    position: absolute;
+    left: 30px;
+    top: 10px;
+}
+
+#primary{
+    position: absolute;
+    left: 40px;
+    top: 20px;
+}
+
+#primary:hover{
+    cursor: pointer;
+}
+
+#secondary:hover {
+    cursor: pointer;
+}
+
+#colorSwitch{
+    position: absolute;
+    left: 120px;
+    top: 3px;
+    height: 55px;
+    width: 55px;
+}
+
+#arrowIcon{
+    align-self: center;
+}
+
+#colorSwitch:hover {
+    background-color: #aaaaaa;
+}
+
+#colorOptions{
+    grid-area:colorOptions;
+    display: grid;
+    grid-template-areas:
+    "slider     slider2d      sliderO"
+    "hex        hex               hex"
+    "usedColors usedColors usedColors"
+    "apply     button         cancel";
+    border-width: 5px;
+}
+
+#colorSlider{
+    grid-area:slider;
+}
+
+#bwSelector{
+    grid-area:slider2d;
+}
+
+#opacitySlider{
+    grid-area:sliderO;
+}
+
+#usedColors{
+    grid-area: usedColors;
+    display: grid;
+    grid-template: "auto auto auto auto auto"
+                   "auto auto auto auto auto";
+    margin-left: 10px;
+}
+
+.oldColor{
+    border: 1px dashed;
+    border-radius: 6px;
+    height: 20px;
+    width: 20px;
+    margin: 2px 0 3px 0;
+}
+
+#hex{
+    margin: 5px;
+    grid-area:hex;
+}
+
+.done {
+    margin-top: 5px;
+    grid-area: button;
+    color: green;
+    justify-self: left;
+}
+
+.cancel {
+    margin-top: 5px;
+    grid-area: button;
+    color: red;
+    justify-self: right;
+}
+
+#doneButton:hover{
+    cursor: pointer;
+    background: #aaaaaa;
+}
+
+.row {
+    margin-bottom: 7px;
+}
+
+#colorBar {
+    margin-top: 30px;
+    margin-bottom: 5px;
+}
+
+.canvas {
+    background-image: url("src/assets/pattern.png");
+}

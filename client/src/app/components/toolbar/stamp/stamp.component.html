@@ -1,0 +1,51 @@
+<div id="container">
+    <mat-form-field>
+        <mat-label>Select a stamp</mat-label>
+        <mat-select
+            style="margin-bottom: -1em;"
+            [(value)]="stampSelected" 
+            (focus)='changeShortcutAccess(false)'
+            (focusout)='changeShortcutAccess(true)'
+            (selectionChange)="toolbarService.unFocus($event);storage.set('stamp_option_link', stampSelected)">
+            <mat-option *ngFor="let stamp of stampOptions; let stamp = index" [value]="stamp">
+                {{stampType[stamp]}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <form [formGroup]="form">
+            <label>Stamp scale</label>
+            <mat-slider
+            thumbLabel
+            [displayWith]="formatLabel"
+            tickInterval="1"
+            type="range"
+            step="1"
+            min="1"
+            max="10"
+            formControlName="scale"
+            onPaste="return false"
+            (focus)='changeShortcutAccess(false)'
+            (focusout)='changeShortcutAccess(true)'
+            (change)='storage.set("stamp_option_scale", (form.get("scale").value?form.get("scale").value:"1"))'
+            style="width: 80%"
+          ></mat-slider>
+        <mat-form-field>
+            <input matInput
+                maxlength="3"
+                name="rotation" 
+                type="text" 
+                formControlName="rotation"
+                placeholder="rotation of image" 
+                onPaste="return false"
+                (focus)='changeShortcutAccess(false)'
+                (focusout)='changeShortcutAccess(true)'
+                (keypress)="this.keypressValidator.angleValidator($event, form.get('rotation').value)"
+                (keyup)='storage.set("stamp_option_rotate", (form.get("rotation").value?form.get("rotation").value:"0"))'>
+            <mat-error *ngIf='form.get("rotation").hasError("required")'>
+                Input cannot be empty
+            </mat-error>
+        </mat-form-field>
+    </form>
+    <p> angle values must be smaller then 359 degrees</p>
+</div>
+

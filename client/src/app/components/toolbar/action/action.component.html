@@ -1,0 +1,22 @@
+<div id="container">
+  <div>
+      <button
+      mat-raised-button
+      matTooltip="undo previous action (ctrl-z)"
+      matTooltipPosition="below"
+      (click)="actionService.undoAction()"
+      [disabled]="!actionService.isUndoAvailable()"
+    >
+      <img src="assets/ui/undo.png" height="16" width="16">
+    </button>
+    <button
+      mat-raised-button
+      matTooltip="redo action that was undone (ctrl-shift-z)"
+      matTooltipPosition="below"
+      (click)="actionService.redoAction()"
+      [disabled]="!actionService.isRedoAvailable()"
+    >
+    <img src="assets/ui/redo.png" height="16" width="16">
+    </button>
+  </div>
+</div>

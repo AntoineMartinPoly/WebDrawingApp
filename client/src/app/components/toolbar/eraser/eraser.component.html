@@ -1,0 +1,16 @@
+<div id="container">
+    <form [formGroup]="form">
+        <mat-form-field>
+            <input matInput name="eraserDiameter" type="text" formControlName="diameter"
+                maxlength="3"
+                placeholder="Eraser's diameter" 
+                (focus)='changeShortcutAccess(false)'
+                (focusout)='changeShortcutAccess(true)'
+                (keypress)="this.keypressValidator.rangeValidator($event, form.get('diameter').value, 100)"
+                (keyup)='storage.set("eraser_diameter", (form.get("diameter").value?form.get("diameter").value:1))'>
+            <mat-error *ngIf='form.get("diameter").hasError("required")'>
+                Input cannot be empty
+            </mat-error>
+        </mat-form-field>
+    </form>
+</div>

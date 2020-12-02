@@ -1,0 +1,47 @@
+<div id="container">
+    <mat-form-field>
+        <mat-label>Select a polygon's option</mat-label>
+        <mat-select 
+            style="margin-bottom: -1em;" 
+            [(ngModel)]="traceSelector"
+            (selectionChange)="toolbarService.unFocus($event); storage.set('shape_polygon_option_trace', traceSelector)"
+            (focus)='changeShortcutAccess(false)'
+            (focusout)='changeShortcutAccess(true)'>
+            <mat-option *ngFor="let contour of traceOptions; let option = index" [value]="traceOptions[option]">
+                {{contour}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <form [formGroup]="form">
+        <mat-form-field>
+            <input matInput name="thick" type="text" formControlName="thickness"
+                maxlength="3"
+                placeholder="Polygon's contour thickness" 
+                onPaste="return false"
+                (focus)='changeShortcutAccess(false)'
+                (focusout)='changeShortcutAccess(true)' 
+                (keypress)="this.keypressValidator.rangeValidator($event, form.get('thickness').value, 100)"
+                (keyup)='storage.set("shape_polygon_option_contour", (form.get("thickness").value?form.get("thickness").value:1))'>
+            <mat-error *ngIf='form.get("thickness").hasError("required")'>
+                Input cannot be empty
+            </mat-error>
+        </mat-form-field>
+        <label>number of sides</label>
+      <mat-slider
+        thumbLabel
+        [displayWith]="formatLabel"
+        tickInterval="1"
+        type="range"
+        step="1"
+        min="3"
+        max="12"
+        value="0.3"
+        formControlName="nbSides"
+        onPaste="return false"
+        (focus)='changeShortcutAccess(false)'
+        (focusout)='changeShortcutAccess(true)'
+        (input)="updatePolygonNumberOfSides($event)"
+        style="width: 80%"
+      ></mat-slider>
+    </form>
+</div>

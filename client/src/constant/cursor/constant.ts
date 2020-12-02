@@ -1,0 +1,20 @@
+export const DRAWING_ELEMENT_INDEX = 1;
+
+export const CURSOR_DEFAULT = 'drawing';
+export const CURSOR_NONE = 'drawing none';
+export const CURSOR_PENCIL = 'drawing pencil';
+export const CURSOR_BRUSH = 'drawing brush';
+export const CURSOR_PEN = 'drawing pen';
+export const CURSOR_STAMP = 'drawing stamp';
+export const CURSOR_PIPETTE = 'drawing pipette';
+export const CURSOR_SELECTION = 'drawing shape';
+export const CURSOR_FEATHER = 'drawing feather';
+export const CURSOR_BUCKET = 'drawing bucket';
+export const CURSOR_LOADING = 'drawing loading';
+export const CURSOR_SPRAY = 'drawing spray';
+export const CURSOR_COLORIZER = 'drawing colorizer';
+export const CURSOR_RECTANGLE = 'drawing rectangle';
+export const CURSOR_ELLIPSE = 'drawing ellipse';
+export const CURSOR_POLYGON = 'drawing polygon';
+export const CURSOR_LINE = 'drawing line';
+export const CURSOR_TEXT = 'drawing text';

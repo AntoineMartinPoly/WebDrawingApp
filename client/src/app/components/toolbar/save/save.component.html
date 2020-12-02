@@ -1,0 +1,55 @@
+<form [formGroup]="saveForm">
+    <div class="row">
+        <div class="col-6">
+            <img [src]=src height='400' width='400' alt="There has been an issue with the generation of the preview of your image">
+        </div>
+        <div class="col-6">
+            <div class="row">
+                <div class="col-12">
+                    {{saveForm.value.name}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <mat-chip-list>
+                        <mat-chip *ngFor="let tag of tagTable; let tagIndex = index" [selectable]="true"
+                            [removable]="true" (removed)="remove(tagIndex)">
+                            {{tag}}
+                            <mat-icon matChipRemove>cancel</mat-icon>
+                        </mat-chip>
+                    </mat-chip-list>
+                </div>
+            </div>
+        </div>
+    </div>
+    <mat-form-field>
+        <input matInput placeholder='name' [value]='' formControlName='name'>
+        <mat-error *ngIf='saveForm.get("name").hasError("required")'>
+            Please enter a name.
+        </mat-error>
+        <mat-error *ngIf='saveForm.get("name").hasError("minlength")'>
+            The name must be over 4 characters long.
+        </mat-error>
+        <mat-error *ngIf='saveForm.get("name").hasError("maxlength")'>
+            The name must be under 16 characters long.
+        </mat-error>
+        <mat-error *ngIf='saveForm.get("name").hasError("pattern")'>
+            The name must be made of letters or/and numbers only.
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="add a tag" formControlName="tag">
+        <mat-error *ngIf='saveForm.get("tag").hasError("maxlength")'>
+            The tag must be under 16 characters long.
+        </mat-error>
+        <mat-error *ngIf='saveForm.get("tag").hasError("pattern")'>
+            The tag must be made of letters or/and numbers only.
+        </mat-error>
+    </mat-form-field>
+    <button mat-button [disabled]="saveForm.invalid" (click)='onSubmit();dialogRef.close();'>Submit</button>
+  <button mat-button [disabled]="saveForm.get('name').invalid" (click)='onLocalSave();dialogRef.close();'>Save locally</button>
+  <button mat-button [disabled]="saveForm.get('tag').invalid
+    || saveForm.get('tag').value === ''
+    || save.isTagDuplicated(tagTable, saveForm.get('tag').value)" (click)='addTag()'>add tag</button>
+    <button mat-button (click)='dialogRef.close()' (click)='grid.toggleGrid(isGridShown)'>Close</button>
+</form>

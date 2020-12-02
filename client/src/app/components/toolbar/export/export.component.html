@@ -1,0 +1,31 @@
+<form [formGroup]="exportForm">
+        <div class="row">
+            <div class="col-12">
+                <img [src]=src height='400' width='400' alt="There has been an issue with the generation of the preview of your image">
+            </div>
+        </div>
+      <mat-form-field>
+        <mat-label>Export format</mat-label>
+        <mat-select [(value)]="exportFormat" [formControl]="exportControl">
+          <mat-option>None</mat-option>
+          <mat-option *ngFor="let format of keys(ExportFormat)" value="{{ format }}">{{ format | uppercase }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder='name' [value]='' formControlName='name'>
+            <mat-error *ngIf='exportForm.get("name").hasError("required")'>
+                Please enter a name.
+            </mat-error>
+            <mat-error *ngIf='exportForm.get("name").hasError("minlength")'>
+                The name must be over 4 characters long.
+            </mat-error>
+            <mat-error *ngIf='exportForm.get("name").hasError("maxlength")'>
+                The name must be under 16 characters long.
+            </mat-error>
+            <mat-error *ngIf='exportForm.get("name").hasError("pattern")'>
+                The name must be made of letters or/and numbers only.
+            </mat-error>
+        </mat-form-field>
+    <button mat-button [disabled]="exportControl.invalid || exportForm.get('name').invalid" (click)='onExport();dialogRef.close();'>Export</button>
+    <button mat-button (click)='dialogRef.close()' (click)= 'grid.toggleGrid(isShown)'>Close</button>
+    </form>

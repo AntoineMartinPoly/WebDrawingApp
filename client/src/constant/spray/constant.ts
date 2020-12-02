@@ -1,0 +1,14 @@
+export const SPRAY_DEFAULT_PERIOD = 50;
+export const SPRAY_DEFAULT_RADIUS = 11;
+export const MAX_ROTATE = 360;
+export const CENTER_X = 'cx';
+export const CENTER_Y = 'cy';
+export const RADIUS = 'r';
+export const SPRAY_FILTER = 'spray';
+export const SPRAY_OPACITY = '1';
+export const SPRAY_DEFAULT_COLOR = '#000000';
+export const SPRAY_SPECK_RADIUS = '1.3';
+export const INTERVAL = 'interval';
+export const MIN_RADIUS = 10;
+export const MAX_RADIUS = 60;
+export const ONE_SECOND_IN_MILLIS = 1000;

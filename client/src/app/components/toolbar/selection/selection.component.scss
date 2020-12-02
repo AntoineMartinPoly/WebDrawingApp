@@ -1,0 +1,59 @@
+#buttons {
+    display: grid;
+    grid-template-areas: "copyB cut"
+                         "paste duplicate"
+                         "delete selectAll";
+    margin: 10px;
+}
+
+.button {
+    color: black;
+    width: 90px;
+    height: 35px;
+    user-select: none;
+    outline: none;    
+    justify-content: center;
+    padding-top: 4px;
+    background-color: rgba(224,224,224,1);
+}
+
+.button:disabled {
+    background-color: darkgray;
+}
+
+.button:active {
+    background-color: rgba(150,150,150,1);
+}
+
+.button:disabled:active {
+    background-color: rgba(100,50,50,1);
+}
+
+#copy {
+    grid-area: copyB;
+    justify-self: right;
+}
+
+#cut {
+    grid-area: cut;
+}
+
+#paste {
+    grid-area: paste;
+    justify-self: right;
+}
+
+#duplicate {
+    grid-area: duplicate;
+}
+
+#delete {
+    grid-area: delete;
+    margin-top: 25px;
+    justify-self: right;
+}
+
+#selectAll {
+    grid-area: selectAll;
+    margin-top: 25px;
+}

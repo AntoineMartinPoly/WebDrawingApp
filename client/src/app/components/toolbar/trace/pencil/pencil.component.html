@@ -1,0 +1,16 @@
+<form [formGroup]="form">
+    <mat-form-field style="margin-bottom: -1em;">
+        <input matInput type="text" 
+            maxlength="3"
+            formControlName="thickness" 
+            placeholder="Pencil's thickness" 
+            onPaste="return false"
+            (focus)='changeShortcutAccess(false)'
+            (focusout)='changeShortcutAccess(true)'
+            (keypress)="this.keypressValidator.rangeValidator($event, form.get('thickness').value, 100)"
+            (keyup)="storage.set('trace_pencil_option_thickness', form.get('thickness').value > 0 ? form.get('thickness').value : '1')">
+        <mat-error *ngIf='form.get("thickness").hasError("required")'>
+            Input cannot be empty
+        </mat-error>
+    </mat-form-field>
+</form>

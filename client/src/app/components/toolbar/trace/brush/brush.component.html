@@ -1,0 +1,32 @@
+<div id="container">
+    <mat-form-field>
+        <mat-label>Select a brush</mat-label>
+        <mat-select 
+            style="margin-bottom: -1em;" 
+            [(ngModel)]="patternSelected"
+            (selectionChange)="toolbarService.unFocus($event); storage.set('trace_brush_option_pattern', patternSelected.toString())"
+            placeholder="select a brush"
+            (focus)='changeShortcutAccess(false)'
+            (focusout)='changeShortcutAccess(true)'
+            >
+            <mat-option *ngFor="let p of keys(patterns)" [value]="p">
+                {{patterns[p]}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <form [formGroup]="form">
+        <mat-form-field>
+            <input matInput name="thick" type="text" formControlName="thickness"
+            maxlength="3"
+            placeholder="Brush's thickness" 
+            onPaste="return false"
+            (focus)='changeShortcutAccess(false)'
+            (focusout)='changeShortcutAccess(true)'
+            (keypress)="this.keypressValidator.rangeValidator($event, form.get('thickness').value, 100)"
+            (keyup)='storage.set("trace_brush_option_thickness", (form.get("thickness").value?form.get("thickness").value : 1))'>
+            <mat-error *ngIf='form.get("thickness").hasError("required")'>
+                Input cannot be empty
+            </mat-error>
+        </mat-form-field>
+    </form>
+</div>

@@ -1,0 +1,16 @@
+<div class="label">
+  <label>Color Similarity Tolerance Percentage</label>
+  <mat-slider
+    thumbLabel
+    tickInterval="1"
+    type="range"
+    step="0.1"
+    min="0.1"
+    max="1"
+    value="0.1"
+    (focus)="changeShortcutAccess(false)"
+    (focusout)="changeShortcutAccess(true)"
+    (input)="updateTolerance($event)"
+    style="width: 90%"
+  ></mat-slider>
+</div>

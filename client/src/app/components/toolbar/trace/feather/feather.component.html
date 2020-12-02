@@ -1,0 +1,33 @@
+<div id="container">
+  <form [formGroup]="form">
+    <mat-form-field>
+      <input matInput name="lineLength" type="text" formControlName="lineLength"
+             maxlength="3"
+             onPaste="return false"
+             placeholder="Length in pixels of the line"
+             (focus)='changeShortcutAccess(false)'
+             (focusout)='changeShortcutAccess(true)'
+             (keypress)="this.keypressValidator.rangeValidator($event, form.get('lineLength').value, 100)"
+             (keyup)='storage.set("trace_feather_option_line_length",
+             (form.get("lineLength").value?form.get("lineLength").value : 1))'>
+      <mat-error *ngIf='form.get("lineLength").hasError("required")'>
+        Input cannot be empty
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput name="orientationAngle" type="text" formControlName="orientationAngle"
+               maxlength="3"
+               onPaste="return false"
+               placeholder="Angle of orientation in degrees"
+               (focus)='changeShortcutAccess(false)'
+               (focusout)='changeShortcutAccess(true)'
+               (keypress)="this.keypressValidator.angleValidator($event, form.get('orientationAngle').value)"
+               (ngModelChange)='storage.set("trace_feather_option_orientation_angle",
+               (form.get("orientationAngle").value?form.get("orientationAngle").value : 0))'>
+      <mat-error *ngIf='form.get("orientationAngle").hasError("required")'>
+        Input cannot be empty
+      </mat-error>
+    </mat-form-field>
+  </form>
+</div>
+
